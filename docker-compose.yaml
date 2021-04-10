@@ -2,31 +2,25 @@ version: "3.8"
 
 services:
   nginx:
-    image: nginx_image
+    image: changc42/private:portfolio_nginx
     container_name: my_nginx
     ports:
-      - 3000:80
+      - 80:80
   portfolio:
     image: changc42/private:portfolio
     container_name: portfolio
   givmonies:
     image: changc42/private:giv_monies
     container_name: givmonies
+# dev
 # version: "3.8"
 
 # services:
 #   nginx:
-#     image: nginx
+#     image: nginx_image
 #     container_name: my_nginx
 #     ports:
 #       - 3000:80
-#     volumes:
-#       - type: bind
-#         source: C:\Users\chang\Github\nginx_reverse_proxy\html
-#         target: /usr/share/nginx/html
-#       - type: bind
-#         source: C:\Users\chang\Github\nginx_reverse_proxy\conf.d
-#         target: /etc/nginx/conf.d
 #   portfolio:
 #     image: changc42/private:portfolio
 #     container_name: portfolio
