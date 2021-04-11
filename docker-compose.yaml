@@ -1,12 +1,26 @@
 version: "3.0"
 
 services:
-  nginx:
+  portfolio_nginx:
     image: changc42/private:portfolio_nginx
-    container_name: my_nginx
+    container_name: portfolio_nginx
     ports:
       - 80:80
-      - 443:443
+      # - 443:443
+    volumes:
+      - web-root:/var/www/html
+      - certbot-etc:/etc/letsencrypt
+      - certbot-var:/var/lib/letsencrypt
+  certbot:
+    image: certbot/certbot
+    container_name: certbot
+    volumes:
+      - certbot-etc:/etc/letsencrypt
+      - certbot-var:/var/lib/letsencrypt
+      - web-root:/var/www/html
+    depends_on:
+      - portfolio_nginx
+    command: certonly --webroot --webroot-path=/var/www/html --email changc42@gmail.com --agree-tos --no-eff-email --staging -d caleb.directory  -d www.caleb.directory
   portfolio:
     image: changc42/private:portfolio
     container_name: portfolio
@@ -22,6 +36,16 @@ services:
   pokemonwar:
     image: changc42/private:pokemonwar
     container_name: pokemonwar
+
+volumes:
+  certbot-etc:
+  certbot-var:
+  web-root:
+    driver: local
+    driver_opts:
+      type: none
+      device: /webroot
+      o: bind
 # dev
 # version: "3.8"
 
