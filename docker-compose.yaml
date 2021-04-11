@@ -12,6 +12,15 @@ services:
   givmonies:
     image: changc42/private:giv_monies
     container_name: givmonies
+  calculator:
+    image: changc42/private:calculator
+    container_name: calculator
+  dragndrop:
+    image: changc42/private:dragndrop
+    container_name: dragndrop
+  pokemonwar:
+    image: changc42/private:pokemonwar
+    container_name: pokemonwar
 # dev
 # version: "3.8"
 
