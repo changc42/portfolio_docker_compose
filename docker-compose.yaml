@@ -51,7 +51,7 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: /dhparam/
+      device: /dhparam
       o: bind
 # dev
 # version: "3.8"
