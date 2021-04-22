@@ -22,7 +22,7 @@ services:
     depends_on:
       - portfolio_nginx
     command:
-      certonly --webroot --webroot-path=/var/www/html --email changc42@gmail.com --agree-tos --no-eff-email --force-renewal -d caleb.directory  -d www.caleb.directory -d portfolio.caleb.directory -d calculator.caleb.directory -d pokemonwar.caleb.directory -d dragndrop.caleb.directory -d givmonies.caleb.directory -d springbootreact.caleb.directory
+      certonly --webroot --webroot-path=/var/www/html --email changc42@gmail.com --agree-tos --no-eff-email --force-renewal --staging -d caleb.directory  -d www.caleb.directory -d portfolio.caleb.directory -d calculator.caleb.directory -d pokemonwar.caleb.directory -d dragndrop.caleb.directory -d givmonies.caleb.directory -d springbootreact.caleb.directory
       # certificates
   portfolio:
     image: changc42/private:portfolio
