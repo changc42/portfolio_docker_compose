@@ -21,8 +21,9 @@ services:
       - web-root:/var/www/html
     depends_on:
       - portfolio_nginx
-    command: certificates
-      # certonly --webroot --webroot-path=/var/www/html --email changc42@gmail.com --agree-tos --no-eff-email --force-renewal -d caleb.directory  -d www.caleb.directory -d portfolio.caleb.directory -d calculator.caleb.directory -d pokemonwar.caleb.directory -d dragndrop.caleb.directory -d givmonies.caleb.directory
+    command:
+      certonly --webroot --webroot-path=/var/www/html --email changc42@gmail.com --agree-tos --no-eff-email --force-renewal -d caleb.directory  -d www.caleb.directory -d portfolio.caleb.directory -d calculator.caleb.directory -d pokemonwar.caleb.directory -d dragndrop.caleb.directory -d givmonies.caleb.directory -d springbootreact.caleb.directory
+      # certificates
   portfolio:
     image: changc42/private:portfolio
     container_name: portfolio
@@ -38,7 +39,21 @@ services:
   pokemonwar:
     image: changc42/private:pokemonwar
     container_name: pokemonwar
-    
+
+  spring_boot_react:
+    image: changc42/private:spring_boot_react
+    depends_on:
+      - sqldb_for_spring_boot_react
+  sqldb_for_spring_boot_react:
+    image: mysql
+    container_name: sqldb_for_spring_boot_react
+    environment:
+      MYSQL_ROOT_PASSWORD: 12345678
+      MYSQL_DATABASE: test_db
+      MYSQL_USER: shopping
+      MYSQL_PASSWORD: 12345678
+    restart: always
+
 volumes:
   certbot-etc:
   certbot-var:
